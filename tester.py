@@ -12,19 +12,9 @@ password = "your_password"
 refresh_time = 10000
 st_autorefresh.st_autorefresh(interval=refresh_time)
 
-# 데이터베이스 연결 함수
-def get_data():
-    conn = psycopg2.connect(host=host, dbname=dbname, user=user, password=password)
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM your_table")  # 적절한 쿼리로 변경
-    data = cursor.fetchall()
-    df = pd.DataFrame(data, columns=[desc[0] for desc in cursor.description])
-    cursor.close()
-    conn.close()
-    return df
-
 # 데이터 불러오기
-data = pd.DataFrame({"a":[1,2,3], "b":[4,5,6]}) #get_data()
+#data = pd.DataFrame({"a":[1,2,3], "b":[4,5,6]}) #get_data()
+data = pd.read_csv('test.csv')
 
 # 데이터 표시
 st.write("Updated Data:", data)
